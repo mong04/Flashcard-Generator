@@ -1,4 +1,4 @@
-var BasicCard = function(font, back){
+var BasicCard = function(front, back){
     this.front = front;
     this.back = back;
 }
