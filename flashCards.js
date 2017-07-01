@@ -1,5 +1,6 @@
 const BasicCard = require('./BasicCard');
 const ClozeCard = require('./ClozeCard');
+const fs = require('fs');
 
 const inquirer = require('inquirer');
 
@@ -28,7 +29,10 @@ inquirer.prompt([
                 }
             ]).then(function(cardInfo){
                 var newBasic = new BasicCard(cardInfo.front, cardInfo.back);
-                console.log(newBasic);
+                // fs.appendFile('log.txt', newBasic);
+                // console.log(newBasic);
+                newBasic.readFront();
+                newBasic.readBack();
             })
             break;
         case 'Make a Cloze-Deleted Flashcard':
@@ -45,7 +49,8 @@ inquirer.prompt([
                 }
             ]).then(function(cardInfo){
                 var newCloze = new ClozeCard(cardInfo.text, cardInfo.cloze);
-                console.log(newCloze);
+                newCloze.readPartial();
+                newCloze.readFull();
             })
             break;
     }
